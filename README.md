@@ -1,5 +1,8 @@
 # Spark
+
 Tutoriel d'utilisation d'Apache Spark pour le cours de SID en Master TIIR @ Université de Lille 1
+
+[TOC]
 
 ## Installation d'un Docker Spark
 ### Sous Linux
@@ -10,7 +13,7 @@ Une fois cela fait, il faut récupérer le container contenant Spark. La command
     docker pull sequenceiq/spark:1.6.0
 
 ###Sous Windows
-toto
+Installer le logiciel Docker sous Windows
 
 
 
@@ -25,30 +28,15 @@ toto
 Pour acceder à l'interface web du container Docker, il suffit d'aller sur http://localhost:8080/
 
 ##Sources 
- * [https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/][1]
- * [http://www.toptal.com/spark/introduction-to-apache-spark][2]
- * [https://districtdatalabs.silvrback.com/getting-started-with-spark-in-python][3]
- * [http://www.tutorialspoint.com/apache_spark/apache_spark_core_programming.htm][4]
- * [http://spark.apache.org/docs/latest/quick-start.html][5]
- * [http://spark.apache.org/documentation.html][6]
- * [http://spark.apache.org/docs/latest/spark-standalone.html][7]
- * [https://blog.cloudera.com/blog/2014/09/how-to-translate-from-mapreduce-to-apache-spark/][8]
- * [http://spark.apache.org/docs/latest/][9]
+ * https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/
+ * http://www.toptal.com/spark/introduction-to-apache-spark
+ * https://districtdatalabs.silvrback.com/getting-started-with-spark-in-python
+ * http://www.tutorialspoint.com/apache_spark/apache_spark_core_programming.htm
+ * http://spark.apache.org/docs/latest/quick-start.html
+ * http://spark.apache.org/documentation.html
+ * http://spark.apache.org/docs/latest/spark-standalone.html
+ * https://blog.cloudera.com/blog/2014/09/how-to-translate-from-mapreduce-to-apache-spark/
+ * http://spark.apache.org/docs/latest/
+ * http://www.ipponusa.com/blog/intro-mapreduce-spark/
+ * https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details
 
-###Writting code ###
-
-    #!javascript
-    function hi(){
-        alert('hi!');
-    }
-
-
-  [1]: https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/
-  [2]: http://www.toptal.com/spark/introduction-to-apache-spark
-  [3]: https://districtdatalabs.silvrback.com/getting-started-with-spark-in-python
-  [4]: http://www.tutorialspoint.com/apache_spark/apache_spark_core_programming.htm
-  [5]: http://spark.apache.org/docs/latest/quick-start.html
-  [6]: http://spark.apache.org/documentation.html
-  [7]: http://spark.apache.org/docs/latest/spark-standalone.html
-  [8]: https://blog.cloudera.com/blog/2014/09/how-to-translate-from-mapreduce-to-apache-spark/
-  [9]: http://spark.apache.org/docs/latest/
