@@ -5,22 +5,24 @@ Tutoriel d'utilisation d'Apache Spark pour le cours de SID en Master TIIR @ Univ
 ### Sous Linux
 Il faut d'abord installer Docker.io avec les librairies correspondantes. Pour cela, il faut executer le script docker.sh.
 
-Une fois cela fait, il faut récupérer le container contenant Spark. La commande docker pull sequenceiq/spark:1.6.0 permet cela
+Une fois cela fait, il faut récupérer le container contenant Spark. La commande ci dessous permet cela.
+
+    docker pull sequenceiq/spark:1.6.0
 
 ###Sous Windows
+toto
 
 
 
 ## Utilisation de Spark
-docker run -it --rm -p 8042:8042 -p 8080-8088:8080-8088 -h sandbox sequenceiq/spark:1.6.0 bash
+    
+    docker run -it --rm -p 8042:8042 -p 8080-8088:8080-8088 -h sandbox sequenceiq/spark:1.6.0 bash
+    cd /usr/local/spark
+    bash sbin/start-all.sh  // non fonctionnel
+    bash sbin/start-slave.sh spark://sandbox:7077
+    MASTER=spark://sandbox:7077 pyspark
 
-cd /usr/local/spark
-
-bash sbin/start-all.sh  // non fonctionnel
-
-bash sbin/start-slave.sh spark://sandbox:7077
-
-MASTER=spark://sandbox:7077 pyspark
+Pour acceder à l'interface web du container Docker, il suffit d'aller sur http://localhost:8080/
 
 ##Sources 
  * [https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/][1]
@@ -30,6 +32,8 @@ MASTER=spark://sandbox:7077 pyspark
  * [http://spark.apache.org/docs/latest/quick-start.html][5]
  * [http://spark.apache.org/documentation.html][6]
  * [http://spark.apache.org/docs/latest/spark-standalone.html][7]
+ * [https://blog.cloudera.com/blog/2014/09/how-to-translate-from-mapreduce-to-apache-spark/][8]
+ * [http://spark.apache.org/docs/latest/][9]
 
 ###Writting code ###
 
@@ -46,4 +50,5 @@ MASTER=spark://sandbox:7077 pyspark
   [5]: http://spark.apache.org/docs/latest/quick-start.html
   [6]: http://spark.apache.org/documentation.html
   [7]: http://spark.apache.org/docs/latest/spark-standalone.html
-
+  [8]: https://blog.cloudera.com/blog/2014/09/how-to-translate-from-mapreduce-to-apache-spark/
+  [9]: http://spark.apache.org/docs/latest/
