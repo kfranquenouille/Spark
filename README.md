@@ -40,6 +40,13 @@ Depuis le master, si l'on souhaite exécuter un programme, voici la commande :
 
     MASTER=spark://192.168.12.106:7077 spark-submit pi.py 100
 
+##DOC algos
+ * https://github.com/demibenari/spark-example
+ * https://github.com/aseigneurin/spark-sandbox
+ * http://web.cs.ucla.edu/~spencertung/CS239/ @Pi Estimator
+ * https://github.com/apache/spark
+ * http://beekeeperdata.com/posts/hadoop/2015/12/14/spark-scala-tutorial.html
+
 ##Sources 
  * https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/
  * http://www.toptal.com/spark/introduction-to-apache-spark
