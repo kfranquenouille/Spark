@@ -2,11 +2,12 @@
 
 Tutoriel d'utilisation d'Apache Spark pour le cours de SID en Master TIIR @ Université de Lille 1
 
-[TOC]
+##Table des matières
+[toc]
 
 ## Installation d'un Docker Spark
 ### Sous Linux
-Il faut d'abord installer Docker.io avec les librairies correspondantes. Pour cela, il faut executer le script docker.sh.
+Il faut d'abord installer Docker.io avec les librairies correspondantes. Pour cela, il faut exécuter le script ```docker.sh```.
 
 Une fois cela fait, il faut récupérer le container contenant Spark. La commande ci dessous permet cela.
 
@@ -19,13 +20,25 @@ Installer le logiciel Docker sous Windows
 
 ## Utilisation de Spark
     
-    docker run -it --rm -p 8042:8042 -p 8080-8088:8080-8088 -h sandbox sequenceiq/spark:1.6.0 bash
+   Pour lancer le master, voici les commandes à exécuter :
+   
+    docker run -it --rm -v $HOME/Documents/sid/tp-spark:/home -p 8080:8080 -p 7077:7077 --name master -h master sequenceiq/spark:1.6.0 bash
     cd /usr/local/spark
-    bash sbin/start-all.sh  // non fonctionnel
-    bash sbin/start-slave.sh spark://sandbox:7077
-    MASTER=spark://sandbox:7077 pyspark
+    bash sbin/start-master.sh
 
+Pour les slaves, il s'agit des commandes suivantes :     
+
+    docker run -d --name slaves -v $HOME/Documents/sid/tp-spark:/home -e SPARK_MASTER_IP=192.168.12.106 -e SPARK_WORKER_CORES=1 -e SPARK_WORKER_MEMORY=1g -e SPARK_WORKER_INSTANCES=4 sequenceiq/spark:1.6.0 '/usr/local/spark/sbin/start-slave.sh spark://${SPARK_MASTER_IP}:7077 ; tail -f /usr/local/spark/logs/*'
+    4348a9f97a3f6330437e53eaac4bcd63046ce051d18ca00eba1742c99430b409
+    
+    docker logs -f 4348a9f97a3f
+
+    docker exec -it NOM_CONTAINER bash          #Pour obtenir le bash 
 Pour acceder à l'interface web du container Docker, il suffit d'aller sur http://localhost:8080/
+
+Depuis le master, si l'on souhaite exécuter un programme, voici la commande :
+
+    MASTER=spark://192.168.12.106:7077 spark-submit pi.py 100
 
 ##Sources 
  * https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/
