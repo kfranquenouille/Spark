@@ -11,16 +11,16 @@ Il faut d'abord installer Docker.io avec les librairies correspondantes. Pour ce
 
 Une fois cela fait, il faut récupérer le container contenant Spark. La commande ci dessous permet cela.
 
-    docker pull sequenceiq/spark:1.6.0
+    docker pull sequenceiq/ spark:1.6.0
 
 ###Sous Windows
-Installer le logiciel Docker sous Windows
-
+Installer le logiciel Docker sous Windows disponible à l'adresse suivante :
+https://docs.docker.com/engine/installation/windows/
 
 
 ## Utilisation de Spark
-    
-   Pour lancer le master, voici les commandes à exécuter :
+
+Pour lancer le master, voici les commandes à exécuter :
    
     docker run -it --rm -v $HOME/Documents/sid/tp-spark:/home -p 8080:8080 -p 7077:7077 --name master -h master sequenceiq/spark:1.6.0 bash
     cd /usr/local/spark
@@ -34,13 +34,17 @@ Pour les slaves, il s'agit des commandes suivantes :
     docker logs -f 4348a9f97a3f
 
     docker exec -it NOM_CONTAINER bash          #Pour obtenir le bash 
+
 Pour acceder à l'interface web du container Docker, il suffit d'aller sur http://localhost:8080/
 
 Depuis le master, si l'on souhaite exécuter un programme, voici la commande :
 
-    MASTER=spark://192.168.12.106:7077 spark-submit pi.py 100
+    MASTER=spark://192.168.12.106:7077 spark-submit zipcode.py 50 59 villes.txt
 
-##DOC algos
+Dans le fichier de sortie, les villes sont listées par ordre alphabétiques et sont référencées avec leur code postal. A la fin du fichier, on y trouve le nombre total de villes présentes dans le département.
+
+##Sources pour l'algorithme
+ * http://researchcomputing.github.io/meetup_spring_2014/python/spark.html //Documentation principale
  * https://github.com/demibenari/spark-example
  * https://github.com/aseigneurin/spark-sandbox
  * http://web.cs.ucla.edu/~spencertung/CS239/ @Pi Estimator
