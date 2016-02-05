@@ -11,7 +11,7 @@ Il faut d'abord installer Docker.io avec les librairies correspondantes. Pour ce
 
 Une fois cela fait, il faut récupérer le container contenant Spark. La commande ci dessous permet cela.
 
-    docker pull sequenceiq/ spark:1.6.0
+    docker pull sequenceiq/spark:1.6.0
 
 ###Sous Windows
 Installer le logiciel Docker sous Windows disponible à l'adresse suivante :
