@@ -10,15 +10,13 @@ from pyspark import SparkContext
 
 if __name__ == "__main__":
     """
-        Usage: zipcode [partitions] [department] [outputFile]
+        Usage: zipcode [department] [outputFile]
     """
-    if len(sys.argv) < 4:
-    	print("Usage: zipcode [partitions] [department] [outputFile]")
+    if len(sys.argv) < 3:
+    	print("Usage: zipcode [department] [outputFile]")
     	sys.exit(0)
 
     sc = SparkContext(appName="PythonZipCode")
-    partitions = int(sys.argv[1]) if len(sys.argv) > 1 else 2
-    n = 100000 * partitions
 
     liste =[]
     output = "(===||:::::::::::::::>  NB DE VILLES  <:::::::::::::::||===)\n\n"

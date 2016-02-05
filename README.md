@@ -39,7 +39,7 @@ Pour acceder à l'interface web du container Docker, il suffit d'aller sur http:
 
 Depuis le master, si l'on souhaite exécuter un programme, voici la commande :
 
-    MASTER=spark://192.168.12.106:7077 spark-submit zipcode.py 50 59 villes.txt
+    MASTER=spark://192.168.12.106:7077 spark-submit zipcode.py 59 villes.txt
 
 Dans le fichier de sortie, les villes sont listées par ordre alphabétiques et sont référencées avec leur code postal. A la fin du fichier, on y trouve le nombre total de villes présentes dans le département.
 
