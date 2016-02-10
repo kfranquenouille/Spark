@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import csv
 import sys
 from random import random
@@ -9,32 +7,40 @@ from pyspark import SparkContext
 
 
 if __name__ == "__main__":
-    """
-        Usage: zipcode [department] [outputFile]
-    """
-    if len(sys.argv) < 3:
-    	print("Usage: zipcode [department] [outputFile]")
-    	sys.exit(0)
+   """
+       Usage: zipcode [department] [outputFile]
+   """
+   if len(sys.argv) < 3:
+       print("Usage: zipcode [department] [outputFile]")
+       sys.exit(0)
 
-    sc = SparkContext(appName="PythonZipCode")
+   sc = SparkContext(appName="PythonZipCode")
 
-    liste =[]
-    output = "(===||:::::::::::::::>  NB DE VILLES  <:::::::::::::::||===)\n\n"
+   liste =[]
+   output = "(===||:::::::::::::::>  NB DE VILLES  <:::::::::::::::||===)\n"
 
-    cr = csv.reader(open("base.csv","rb"), delimiter=';', quotechar='|')
-    for row in cr:
-        if (row[2].startswith( sys.argv[2] )):
-            tmp = []
-            tmp.append(1)
-            liste.append( tmp )
-            output = output + row[2] + " - " + row[1] + "\n"
+   cr = csv.reader(open("base.csv","rb"), delimiter=';', quotechar='|')
+   lines=list(cr)
 
-    villesChoisies = sc.parallelize(liste).flatMap(lambda z: z).reduce(lambda x,y: x+y)
-    
-    output = output + "\nTOTAL : " + str(villesChoisies) + "\n----------------------- ( o ) ( o ) ------------------------"
+   # On parallelise le decoupage des villes en map et on reduit par les clés (code postal)
+   villesChoisies = sc.parallelize(lines).map(lambda z: (z[2], 1)).reduceByKey(add)
+   res = villesChoisies.collect()
+   
+   num_ville = 0
 
-    text_file = open(sys.argv[3], "w")
-    text_file.write("%s" % output)
-    text_file.close()
+   # On recherche en fonction de la ville et on compte le nombre de villes par département
+   for (ville, count) in res:
+       if (ville.startswith(sys.argv[1])):
+           num_ville += count
 
-    sc.stop()
+   print ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+   print (num_ville)
+   print ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
+   output = output + "TOTAL : " + str(num_ville) + "\n----------------------- ( o ) ( o ) ------------------------"
+
+   text_file = open(sys.argv[2], "w")
+   text_file.write("%s" % output)
+   text_file.close()
+
+   sc.stop()
